@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Mission Log - Habit Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-icons@0.284.0/dist/umd/lucide.min.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-content">
+        <h1 class="title">DAILY MISSION LOG</h1>
+        <p class="subtitle">Track your habits with precision</p>
+      </div>
+      <div class="theme-selector">
+        <button id="theme-toggle" class="theme-toggle">
+          <span id="theme-icon" class="icon">⚙️</span>
+          <span id="theme-text">Mecha Theme</span>
+        </button>
+        <div id="theme-dropdown" class="theme-dropdown hidden">
+          <div class="theme-option" data-theme="mecha">
+            <span class="icon">⚙️</span>
+            <span>Mecha Theme</span>
+          </div>
+          <div class="theme-option" data-theme="katana">
+            <span class="icon">⚔️</span>
+            <span>Katana Theme</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="progress-section">
+      <div class="progress-header">
+        <div>
+          <h2 class="section-title">Daily Progress</h2>
+          <p class="section-subtitle">Track your habit completion</p>
+        </div>
+        <div class="completion-rate">
+          <span id="completion-percentage" class="percentage">0%</span>
+          <span class="completion-text">completed</span>
+        </div>
+      </div>
+      
+      <div id="progress-container" class="progress-container">
+        <div id="mecha-progress" class="mecha-progress">
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+          <div class="progress-markers">
+            <div class="progress-marker" style="left: 0%"></div>
+            <div class="progress-marker" style="left: 20%"></div>
+            <div class="progress-marker" style="left: 40%"></div>
+            <div class="progress-marker" style="left: 60%"></div>
+            <div class="progress-marker" style="left: 80%"></div>
+            <div class="progress-marker" style="left: 100%"></div>
+          </div>
+          <div class="progress-edges">
+            <div class="progress-edge left"></div>
+            <div class="progress-edge right"></div>
+          </div>
+          <div id="progress-lights" class="progress-lights hidden"></div>
+        </div>
+        
+        <canvas id="katana-progress" class="katana-progress hidden" width="800" height="100"></canvas>
+      </div>
+      
+      <div class="progress-labels">
+        <div>0%</div>
+        <div>25%</div>
+        <div>50%</div>
+        <div>75%</div>
+        <div>100%</div>
+      </div>
+    </section>
+
+    <section class="tabs-section">
+      <div class="tabs">
+        <button class="tab active" data-tab="habits">Habits</button>
+        <button class="tab" data-tab="calendar">Calendar</button>
+        <button class="tab" data-tab="add">Add New</button>
+      </div>
+
+      <div id="habits-content" class="tab-content active">
+        <div id="habits-list" class="habits-list">
+          <!-- Habits will be added here dynamically -->
+          <div id="empty-habits" class="empty-state">
+            <div class="empty-icon">⚠️</div>
+            <h3 class="empty-title">No habits added yet</h3>
+            <p class="empty-message">Add your first habit to start tracking your progress</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="calendar-content" class="tab-content">
+        <div class="calendar-container">
+          <div class="calendar-header">
+            <button id="prev-month" class="calendar-nav">←</button>
+            <h3 id="calendar-title" class="calendar-title">Month Year</h3>
+            <button id="next-month" class="calendar-nav">→</button>
+          </div>
+          <div class="calendar-weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          <div id="calendar-days" class="calendar-days">
+            <!-- Calendar days will be added here dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <div id="add-content" class="tab-content">
+        <form id="habit-form" class="habit-form">
+          <h2 class="form-title">Add New Habit</h2>
+          
+          <div class="form-group">
+            <label for="habit-name" class="form-label">Habit Name</label>
+            <input type="text" id="habit-name" class="form-input" placeholder="e.g., Morning Exercise" required>
+            <div class="form-error" id="name-error"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="habit-description" class="form-label">Description (Optional)</label>
+            <textarea id="habit-description" class="form-textarea" placeholder="Add details about your habit"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="habit-reminder" class="form-label">Reminder Time (Optional)</label>
+            <input type="time" id="habit-reminder" class="form-input">
+            <div class="form-hint">Set a time to be reminded of this habit</div>
+          </div>
+          
+          <button type="submit" id="add-habit-btn" class="form-button">Add Habit</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
